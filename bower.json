@@ -1,0 +1,25 @@
+{
+  "name": "job",
+  "main": "app.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/xiaoDC/job",
+  "authors": [
+    "chenglong01020@gmail.com <chenglong01020@gmail.com>"
+  ],
+  "description": "collect some jobs & employments from the most popular websites",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "ISC",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.13.3",
+    "requirejs": "~2.1.18"
+  }
+}
