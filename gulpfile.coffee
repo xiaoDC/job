@@ -8,7 +8,7 @@ gulp.task 'coffee', ['coffee_all'], ->
     .pipe coffee bare: true
     .pipe gulp.dest './app/config'
 
-gulp.task 'coffee_all', ['coffee_controllers', 'coffee_modles', 'coffee_schemas','coffee_js'], ->
+gulp.task 'coffee_all', ['coffee_controllers', 'coffee_modles', 'coffee_schemas','coffee_js', 'coffee_spider'], ->
     gulp.src './*.coffee'
     .pipe coffee bare: true
     .pipe gulp.dest ''
@@ -33,6 +33,11 @@ gulp.task 'coffee_js', ->
     .pipe coffee bare: true
     .pipe gulp.dest './build/js'
 
+gulp.task 'coffee_spider', ->
+    gulp.src './src/spider/*.coffee'
+    .pipe coffee bare: true
+    .pipe gulp.dest './build/spider'
+
 gulp.task 'copy', ->
     copy = require 'gulp-copy'
 
@@ -54,3 +59,4 @@ gulp.task 'exec', (cb)->
         console.log stderr
         cb err
         return
+

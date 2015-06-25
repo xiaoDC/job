@@ -1,12 +1,7 @@
 ({
-    appDir: './build/js',
-    baseUrl: '.',
+    // appDir: './build/js',
+    baseUrl: "./build/js",
     paths: {},
-    dir: 'app/js',
-    name: 'index',
-    shim:{
-        "react":{
-            exports: 'reatc'
-        }
-    }
+    mainConfigFile: "./build/js/common.js",
+    dir: "app/js",
 })

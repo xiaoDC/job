@@ -1,5 +1,0 @@
-
-index.js
-----------------
-react.js
-index.js

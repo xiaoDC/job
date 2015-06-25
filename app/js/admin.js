@@ -1,0 +1,1 @@
+require(["react"],function(e){var t,n;return n=e.createClass({render:function(){return e.createElement("h1",null,this.props.name)}}),t=e.createClass({render:function(){return e.createElement("div",{className:"commentBox"},e.createElement(n,{name:this.props.name.name}),this.props.name.na)}}),e.render(e.createElement(t,{name:{name:"chenglong",na:"cl"}}),document.body)});

@@ -1,7 +1,10 @@
-var Index;
+var Admin, Index;
 
 Index = require('../controllers/index');
 
+Admin = require('../controllers/admin');
+
 module.exports = function(app) {
-  return app.get('/', Index.index);
+  app.get('/', Index.index);
+  return app.get('/admin', Admin.index);
 };

@@ -12,7 +12,7 @@ gulp.task('coffee', ['coffee_all'], function() {
   })).pipe(gulp.dest('./app/config'));
 });
 
-gulp.task('coffee_all', ['coffee_controllers', 'coffee_modles', 'coffee_schemas', 'coffee_js'], function() {
+gulp.task('coffee_all', ['coffee_controllers', 'coffee_modles', 'coffee_schemas', 'coffee_js', 'coffee_spider'], function() {
   return gulp.src('./*.coffee').pipe(coffee({
     bare: true
   })).pipe(gulp.dest(''));
@@ -40,6 +40,12 @@ gulp.task('coffee_js', function() {
   return gulp.src('./src/js/*.coffee').pipe(coffee({
     bare: true
   })).pipe(gulp.dest('./build/js'));
+});
+
+gulp.task('coffee_spider', function() {
+  return gulp.src('./src/spider/*.coffee').pipe(coffee({
+    bare: true
+  })).pipe(gulp.dest('./build/spider'));
 });
 
 gulp.task('copy', function() {
