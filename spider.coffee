@@ -11,8 +11,21 @@ writeFile = (_file, _context)->
             console.log 'write file done'
 
 data = ''
+
+
+path = require 'path'
+childProcess = require 'child_process'
+phantomjs = require 'phantomjs'
+binpath = phantomjs.path
+
+page.open url, (status)->
+    console.log "status #{status}"
+    # if status is 'success'
+    #     page.render
+
+
 req = http.request url, (res)->
-    res.setEncoding 'gbk'
+    res.setEncoding 'utf-8'
     res.on 'data', (chunk)->
         data += chunk
     res.on 'end', (tt)->

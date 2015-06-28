@@ -14,7 +14,7 @@ app = express()
 
 # mongoose.connect dbUrl
 
-app.use express.static path.join __dirname, 'app'
+app.use express.static path.join __dirname, 'build'
 app.use bodyParser()
 # app.use favicon path.join __dirname, 'build/img/favicon.ico'
 # app.use session

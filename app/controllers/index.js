@@ -1,3 +1,5 @@
 exports.index = function(req, res) {
   return res.render('index');
 };
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmNvZmZlZSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLENBQUMsS0FBUixHQUFnQixTQUFDLEdBQUQsRUFBTSxHQUFOO1NBQ1osR0FBRyxDQUFDLE1BQUosQ0FBVyxPQUFYO0FBRFkiLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiL3NvdXJjZS8iLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnRzLmluZGV4ID0gKHJlcSwgcmVzKS0+XG4gICAgcmVzLnJlbmRlciAnaW5kZXgnIl19
