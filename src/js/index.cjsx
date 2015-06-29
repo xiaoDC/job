@@ -1,34 +1,26 @@
-require ['react'], (React)->
-    # Tab = React.createClass
-    #     getInitialState:()->
-    #         selected: false
-
-    #     changeSelect:()->
-    #         this.setState
-    #             selected: !this.state.selected
-
-    #     render: ()->
-    #         if this.state.selected
-    #             <li className='selected' onClick={this.changeSelect}>
-    #                 {this.props.name.name}
-    #             </li>
-    #         else
-    #             <li onClick={this.changeSelect}>
-    #                 {this.props.name.na}
-    #             </li>
-
-    # SearchBar = React.createClass
-    #     searchHandler: ()->
-    #         this.props.searchHandler(this.refs.searchKey.getDOMNode().value);
-
-    #     render: ()->
-    #         <div className='bar'>
-    #             <input type='text' ref='searchKey' />
-    #         </div>
+require ['react', './lib/pubsub'], (React, Pubsub)->
     PageItem = React.createClass
-        render: ()->
+        getInitialState:()->
+            active: false
+
+        componentWillMount:()->
+            self = this
+            this.pubsub_token = Pubsub.subscribe 'changetab', (topic, signal)->
+                if signal is self.props.seri_no
+                    self.setState active: true
+                else
+                    self.setState active: false
+
+        componentWillUnmount:()->
+            Pubsub.unsubscribe this.pubsub_token
+
+        componentDidMount:()->
             if this.props.className
-                <div className={this.props.className}>
+                delete this.props.className
+
+        render: ()->
+            if this.props.className or this.state.active
+                <div className='active'>
                     {this.props.displayName}
                 </div>
             else
@@ -39,10 +31,12 @@ require ['react'], (React)->
 
     PageBox = React.createClass
         render: ()->
+            items = []
+            items[0] = <PageItem key={0} displayName='内容1' className='active' seri_no='0'/>
+            items[1] = <PageItem key={1} displayName='内容2' seri_no='1'/>
+            items[2] = <PageItem key={2} displayName='内容3' seri_no='2'/>
             <ul className='page clear'>
-                <PageItem displayName='内容1' className='active'/>
-                <PageItem displayName='内容2'/>
-                <PageItem displayName='内容3'/>
+                {items}
             </ul>
 
 
@@ -50,12 +44,28 @@ require ['react'], (React)->
         getInitialState:()->
             active: false
 
-        handleClick: ()->
-            this.props.click(this)
+        componentWillMount:()->
+            self = this
+            this.pubsub_token = Pubsub.subscribe 'changetab', (topic, signal)->
+                if signal is self.props.seri_no
+                    self.setState active: true
+                else
+                    self.setState active: false
+
+        componentWillUnmount:()->
+            Pubsub.unsubscribe this.pubsub_token
+
+        componentDidMount:()->
+            if this.props.className
+                delete this.props.className
+
+        handleClick: (e)->
+            Pubsub.publish 'changetab', this.props.seri_no
+            e.stopPropagation() or e.preventDefault()
 
         render: ()->
             if this.props.className or this.state.active
-                <li className={this.props.className||'active'} onClick={this.handleClick}>
+                <li className='active' onClick={this.handleClick}>
                     {this.props.displayName}
                 </li>
             else
@@ -65,14 +75,13 @@ require ['react'], (React)->
 
 
     TabBox = React.createClass
-        handleClick: (item)->
-            console.log this
-            item.setState active:true
         render: ()->
+            items = []
+            items[0] = <TabItem key={0} displayName='技术' className='active' seri_no='0'/>
+            items[1] = <TabItem key={1} displayName='运营' seri_no='1'/>
+            items[2] = <TabItem key={2} displayName='产品' seri_no='2'/>
             <ul className='nav-tab clear'>
-                <TabItem displayName='技术' className='active' click={this.handleClick}/>
-                <TabItem displayName='运营' click={this.handleClick}/>
-                <TabItem displayName='3' click={this.handleClick}/>
+                {items}
             </ul>
 
 
