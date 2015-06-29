@@ -57,12 +57,19 @@ gulp.task 'coffee_spider', ->
     .pipe sourcemaps.write()
     .pipe gulp.dest './build/spider'
 
-gulp.task 'copy', ['copy_css'],->
+gulp.task 'copy', ['copy_lib'],->
     copy = require 'gulp-copy'
 
-    gulp.src ['./bower_components/react/react.js', './bower_components/requirejs/require.js']
+    gulp.src ['./bower_components/react/react.js', './bower_components/requirejs/require.js', './bower_components/pubsub-js/src/pubsub.js']
     .pipe copy './build/js/',
         prefix: 2
+
+gulp.task 'copy_lib', ['copy_css'],->
+    copy = require 'gulp-copy'
+
+    gulp.src ['./bower_components/pubsub-js/src/pubsub.js']
+    .pipe copy './build/js/lib',
+        prefix: 3
 
 gulp.task 'copy_css', ->
     copy = require 'gulp-copy'

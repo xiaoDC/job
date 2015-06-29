@@ -7,22 +7,21 @@
     .nav-tab {
         li {
             font-size: 1rem;
-            height: 2rem;
-            line-height: 2rem;
+            height: 3rem;
+            line-height: 3rem;
             list-style: none;
             float: left;
             width: 33.33%;
             text-align: center;
             vertical-align: middle;
+            border-bottom: 1px solid #ddd;
             &.active {
                 border-bottom: 1px solid #F5B806;
             }
         }
     }
     .page {
-        position: relative;
         div {
-            position: absolute;
             display: none;
             &.active {
                 display: block;
