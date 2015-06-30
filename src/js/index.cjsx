@@ -1,4 +1,17 @@
-require ['react', './lib/pubsub'], (React, Pubsub)->
+require ['react', './pubsub', './jquery'], (React, Pubsub, $)->
+    $.when( $.ajax 'jobs' ).done (result)->
+            console.log result
+
+    JobList = React.createClass
+        render:()->
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+            </ul>
+
     PageItem = React.createClass
         getInitialState:()->
             active: false
@@ -21,11 +34,11 @@ require ['react', './lib/pubsub'], (React, Pubsub)->
         render: ()->
             if this.props.className or this.state.active
                 <div className='active'>
-                    {this.props.displayName}
+                    <JobList/>
                 </div>
             else
                 <div>
-                    {this.props.displayName}
+                    <JobList/>
                 </div>
 
 

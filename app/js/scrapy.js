@@ -1,1 +1,38 @@
-var Scrapy,_,data,http,req,url;http=require("http"),url="http://www.lagou.com/jobs/list_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91?px=default&city=%E6%9D%AD%E5%B7%9E",_=require("underscore"),data="",req=http.request(url,function(e){return e.setEncoding("utf-8"),e.on("data",function(e){return data+=e}),e.on("end",function(){return console.log(data)})}),req.end(),Scrapy=function(){function e(e){this.url=e}return e.prototype.fetch=function(e){return _.each(this.url,function(){})},e}(),module.exports=Scrapy;
+var Scrapy, _, data, http, req, url;
+
+http = require('http');
+
+url = 'http://www.lagou.com/jobs/list_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91?px=default&city=%E6%9D%AD%E5%B7%9E';
+
+_ = require('underscore');
+
+data = '';
+
+req = http.request(url, function(res) {
+  res.setEncoding('utf-8');
+  res.on('data', function(chunk) {
+    return data += chunk;
+  });
+  return res.on('end', function() {
+    return console.log(data);
+  });
+});
+
+req.end();
+
+Scrapy = (function() {
+  function Scrapy(_url) {
+    this.url = _url;
+  }
+
+  Scrapy.prototype.fetch = function(next) {
+    return _.each(this.url, function() {});
+  };
+
+  return Scrapy;
+
+})();
+
+module.exports = Scrapy;
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNjcmFweS5jb2ZmZWUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsSUFBQTs7QUFBQSxJQUFBLEdBQU8sT0FBQSxDQUFRLE1BQVI7O0FBQ1AsR0FBQSxHQUFNOztBQUNOLENBQUEsR0FBSSxPQUFBLENBQVEsWUFBUjs7QUFFSixJQUFBLEdBQU87O0FBQ1AsR0FBQSxHQUFNLElBQUksQ0FBQyxPQUFMLENBQWEsR0FBYixFQUFrQixTQUFDLEdBQUQ7RUFDcEIsR0FBRyxDQUFDLFdBQUosQ0FBZ0IsT0FBaEI7RUFDQSxHQUFHLENBQUMsRUFBSixDQUFPLE1BQVAsRUFBZSxTQUFDLEtBQUQ7V0FDWCxJQUFBLElBQVE7RUFERyxDQUFmO1NBRUEsR0FBRyxDQUFDLEVBQUosQ0FBTyxLQUFQLEVBQWMsU0FBQTtXQUNWLE9BQU8sQ0FBQyxHQUFSLENBQVksSUFBWjtFQURVLENBQWQ7QUFKb0IsQ0FBbEI7O0FBT04sR0FBRyxDQUFDLEdBQUosQ0FBQTs7QUFFTTtFQUNXLGdCQUFDLElBQUQ7SUFDVCxJQUFDLENBQUMsR0FBRixHQUFRO0VBREM7O21CQUViLEtBQUEsR0FBTyxTQUFDLElBQUQ7V0FDSCxDQUFDLENBQUMsSUFBRixDQUFPLElBQUMsQ0FBQyxHQUFULEVBQWMsU0FBQSxHQUFBLENBQWQ7RUFERzs7Ozs7O0FBTVgsTUFBTSxDQUFDLE9BQVAsR0FBaUIiLCJmaWxlIjoic2NyYXB5LmpzIiwic291cmNlUm9vdCI6Ii9zb3VyY2UvIiwic291cmNlc0NvbnRlbnQiOlsiaHR0cCA9IHJlcXVpcmUgJ2h0dHAnXG51cmwgPSAnaHR0cDovL3d3dy5sYWdvdS5jb20vam9icy9saXN0XyVFNSU4OSU4RCVFNyVBQiVBRiVFNSVCQyU4MCVFNSU4RiU5MT9weD1kZWZhdWx0JmNpdHk9JUU2JTlEJUFEJUU1JUI3JTlFJ1xuXyA9IHJlcXVpcmUgJ3VuZGVyc2NvcmUnXG5cbmRhdGEgPSAnJ1xucmVxID0gaHR0cC5yZXF1ZXN0IHVybCwgKHJlcyktPlxuICAgIHJlcy5zZXRFbmNvZGluZyAndXRmLTgnXG4gICAgcmVzLm9uICdkYXRhJywgKGNodW5rKS0+XG4gICAgICAgIGRhdGEgKz0gY2h1bmtcbiAgICByZXMub24gJ2VuZCcsICgpLT5cbiAgICAgICAgY29uc29sZS5sb2cgZGF0YVxuXG5yZXEuZW5kKClcblxuY2xhc3MgU2NyYXB5XG4gICAgY29uc3RydWN0b3I6IChfdXJsKSAtPlxuICAgICAgICBALnVybCA9IF91cmxcbiAgICBmZXRjaDogKG5leHQpLT5cbiAgICAgICAgXy5lYWNoIEAudXJsLCAoKS0+XG5cblxuXG5cbm1vZHVsZS5leHBvcnRzID0gU2NyYXB5XG4iXX0=

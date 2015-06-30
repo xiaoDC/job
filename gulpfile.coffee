@@ -15,7 +15,13 @@ gulp.task 'coffee', ['coffee_all'], ->
     .pipe sourcemaps.write()
     .pipe gulp.dest './app/config'
 
-gulp.task 'coffee_all', ['coffee_controllers', 'coffee_models', 'coffee_schemas','coffee_js', 'coffee_spider'], ->
+gulp.task 'coffee_all', [
+    'coffee_controllers'
+    'coffee_models'
+    'coffee_schemas'
+    'coffee_js'
+    'coffee_service'
+    ], ->
     gulp.src './*.coffee'
     .pipe sourcemaps.init()
     .pipe coffee bare: true
@@ -50,26 +56,33 @@ gulp.task 'coffee_js', ->
     .pipe sourcemaps.write()
     .pipe gulp.dest './build/js'
 
-gulp.task 'coffee_spider', ->
-    gulp.src './src/spider/*.coffee'
+gulp.task 'coffee_service', ->
+    gulp.src './src/service/*.coffee'
     .pipe sourcemaps.init()
     .pipe coffee bare: true
     .pipe sourcemaps.write()
-    .pipe gulp.dest './build/spider'
+    .pipe gulp.dest './app/service'
 
-gulp.task 'copy', ['copy_lib'],->
+gulp.task 'copy', ['copy_lib', 'copy_css'],->
     copy = require 'gulp-copy'
 
-    gulp.src ['./bower_components/react/react.js', './bower_components/requirejs/require.js', './bower_components/pubsub-js/src/pubsub.js']
+    gulp.src [
+        './bower_components/react/react.js'
+        './bower_components/requirejs/require.js'
+        ]
     .pipe copy './build/js/',
         prefix: 2
 
-gulp.task 'copy_lib', ['copy_css'],->
+gulp.task 'copy_lib', ->
     copy = require 'gulp-copy'
 
-    gulp.src ['./bower_components/pubsub-js/src/pubsub.js']
-    .pipe copy './build/js/lib',
+    gulp.src [
+        './bower_components/pubsub-js/src/pubsub.js'
+        './bower_components/jquery/dist/jquery.js'
+    ]
+    .pipe copy './build/js/',
         prefix: 3
+
 
 gulp.task 'copy_css', ->
     copy = require 'gulp-copy'
@@ -86,7 +99,7 @@ gulp.task 'cjsx', ->
     .pipe gulp.dest './build/js'
 
 ### 运行 require 的 r.js 优化依赖 ###
-gulp.task 'exec', (cb)->
+gulp.task 'exec', ['coffee'], (cb)->
     exec = require('child_process').exec
     exec 'node node_modules/requirejs/bin/r.js -o require-config.js', (err, stdout, stderr)->
         console.log stdout
@@ -106,6 +119,6 @@ gulp.task 'sass', ->
     .pipe gulp.dest './build/css'
 
 gulp.task 'del', ->
-    #del = require 'del'
-    #del ['app/**/*.js', 'build/']
+    # del = require 'del'
+    # del ['app/**/*.js', 'build/js/*.js']
 
