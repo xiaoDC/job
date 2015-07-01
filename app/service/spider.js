@@ -1,15 +1,26 @@
-var Spider_lagou, http, url;
+var BufferHelper, Spider, child_process;
 
-http = require('http');
+child_process = require('child_process');
 
-url = 'http://www.lagou.com/jobs/positionAjax.json?';
+BufferHelper = require('bufferhelper');
 
-Spider_lagou = {
+Spider = {
   run: function() {
-    return console.log('test');
+    var bufferhelper, child;
+    bufferhelper = new BufferHelper();
+    child = child_process.spawn('node', ['lagou.js'], {
+      cwd: './app/service/spider'
+    });
+    child.stdout.on('data', function(data) {
+      return bufferhelper.concat(data);
+    });
+    return child.on('close', function(code) {
+      var data, json;
+      data = bufferhelper.toString();
+      json = JSON.parse(data);
+      return console.log(json);
+    });
   }
 };
 
-exports.run = Spider_lagou.run;
-
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNwaWRlci5jb2ZmZWUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsSUFBQTs7QUFBQSxJQUFBLEdBQU8sT0FBQSxDQUFRLE1BQVI7O0FBQ1AsR0FBQSxHQUFNOztBQUVOLFlBQUEsR0FDSTtFQUFBLEdBQUEsRUFBSSxTQUFBO1dBU0EsT0FBTyxDQUFDLEdBQVIsQ0FBWSxNQUFaO0VBVEEsQ0FBSjs7O0FBV0osT0FBTyxDQUFDLEdBQVIsR0FBZSxZQUFZLENBQUMiLCJmaWxlIjoic3BpZGVyLmpzIiwic291cmNlUm9vdCI6Ii9zb3VyY2UvIiwic291cmNlc0NvbnRlbnQiOlsiaHR0cCA9IHJlcXVpcmUgJ2h0dHAnXG51cmwgPSAnaHR0cDovL3d3dy5sYWdvdS5jb20vam9icy9wb3NpdGlvbkFqYXguanNvbj8nXG5cblNwaWRlcl9sYWdvdSA9XG4gICAgcnVuOigpLT5cbiAgICAgICAgIyBkYXRhID0gJydcbiAgICAgICAgIyByZXEgPSBodHRwLnJlcXVlc3QgdXJsLCAocmVzKS0+XG4gICAgICAgICMgICAgIHJlcy5zZXRFbmNvZGluZyAndXRmLTgnXG4gICAgICAgICMgICAgIHJlcy5vbiAnZGF0YScsIChjaHVuayktPlxuICAgICAgICAjICAgICAgICAgZGF0YSArPSBjaHVua1xuICAgICAgICAjICAgICByZXMub24gJ2VuZCcsICgpLT5cblxuICAgICAgICAjIHJlcS5lbmQoKVxuICAgICAgICBjb25zb2xlLmxvZyAndGVzdCdcblxuZXhwb3J0cy5ydW4gPSAgU3BpZGVyX2xhZ291LnJ1blxuIl19
+exports.run = Spider.run;

@@ -1,13 +1,7 @@
-var Spider;
-
-Spider = require('../spider/spider_lagou');
-
 exports.index = function(req, res) {
   return res.render('index');
 };
 
 exports.job = function(req, res) {
-  return res.send(Spider.spider());
+  return res.send('Spider');
 };
-
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmNvZmZlZSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxJQUFBOztBQUFBLE1BQUEsR0FBUyxPQUFBLENBQVEsd0JBQVI7O0FBRVQsT0FBTyxDQUFDLEtBQVIsR0FBZ0IsU0FBQyxHQUFELEVBQU0sR0FBTjtTQUNaLEdBQUcsQ0FBQyxNQUFKLENBQVcsT0FBWDtBQURZOztBQUdoQixPQUFPLENBQUMsR0FBUixHQUFjLFNBQUMsR0FBRCxFQUFNLEdBQU47U0FDVixHQUFHLENBQUMsSUFBSixDQUFTLE1BQU0sQ0FBQyxNQUFQLENBQUEsQ0FBVDtBQURVIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlUm9vdCI6Ii9zb3VyY2UvIiwic291cmNlc0NvbnRlbnQiOlsiU3BpZGVyID0gcmVxdWlyZSAnLi4vc3BpZGVyL3NwaWRlcl9sYWdvdSdcblxuZXhwb3J0cy5pbmRleCA9IChyZXEsIHJlcyktPlxuICAgIHJlcy5yZW5kZXIgJ2luZGV4J1xuXG5leHBvcnRzLmpvYiA9IChyZXEsIHJlcyktPlxuICAgIHJlcy5zZW5kIFNwaWRlci5zcGlkZXIoKSJdfQ==

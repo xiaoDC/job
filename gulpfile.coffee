@@ -10,9 +10,9 @@ gulp.task 'default', ['del', 'coffee', 'copy', 'cjsx', 'exec', 'sass'], ->
 
 gulp.task 'coffee', ['coffee_all'], ->
     gulp.src './src/config/*.coffee'
-    .pipe sourcemaps.init()
+    # .pipe sourcemaps.init()
     .pipe coffee bare: true
-    .pipe sourcemaps.write()
+    # .pipe sourcemaps.write()
     .pipe gulp.dest './app/config'
 
 gulp.task 'coffee_all', [
@@ -23,44 +23,44 @@ gulp.task 'coffee_all', [
     'coffee_service'
     ], ->
     gulp.src './*.coffee'
-    .pipe sourcemaps.init()
+    # .pipe sourcemaps.init()
     .pipe coffee bare: true
-    .pipe sourcemaps.write()
+    # .pipe sourcemaps.write()
     .pipe gulp.dest ''
 
 gulp.task 'coffee_controllers', ->
     gulp.src './src/controllers/*.coffee'
-    .pipe sourcemaps.init()
+    # .pipe sourcemaps.init()
     .pipe coffee bare: true
-    .pipe sourcemaps.write()
+    # .pipe sourcemaps.write()
     .pipe gulp.dest './app/controllers'
 
 gulp.task 'coffee_models', ->
     gulp.src './src/models/*.coffee'
-    .pipe sourcemaps.init()
+    # .pipe sourcemaps.init()
     .pipe coffee bare: true
-    .pipe sourcemaps.write()
+    # .pipe sourcemaps.write()
     .pipe gulp.dest './app/models'
 
 gulp.task 'coffee_schemas', ->
     gulp.src './src/schemas/*.coffee'
-    .pipe sourcemaps.init()
+    # .pipe sourcemaps.init()
     .pipe coffee bare: true
-    .pipe sourcemaps.write()
+    # .pipe sourcemaps.write()
     .pipe gulp.dest './app/schemas'
 
 gulp.task 'coffee_js', ->
     gulp.src './src/js/*.coffee'
-    .pipe sourcemaps.init()
+    # .pipe sourcemaps.init()
     .pipe coffee bare: true
-    .pipe sourcemaps.write()
+    # .pipe sourcemaps.write()
     .pipe gulp.dest './build/js'
 
 gulp.task 'coffee_service', ->
-    gulp.src './src/service/*.coffee'
-    .pipe sourcemaps.init()
+    gulp.src './src/service/**/*.coffee'
+    # .pipe sourcemaps.init()
     .pipe coffee bare: true
-    .pipe sourcemaps.write()
+    # .pipe sourcemaps.write()
     .pipe gulp.dest './app/service'
 
 gulp.task 'copy', ['copy_lib', 'copy_css'],->
@@ -112,10 +112,10 @@ gulp.task 'sass', ->
     autoprefixer = require 'gulp-autoprefixer'
 
     gulp.src './src/scss/*.scss'
-    .pipe sourcemaps.init()
+    # .pipe sourcemaps.init()
     .pipe sass outputStyle: 'expanded'
     .pipe autoprefixer 'last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'Android 4'
-    .pipe sourcemaps.write()
+    # .pipe sourcemaps.write()
     .pipe gulp.dest './build/css'
 
 gulp.task 'del', ->

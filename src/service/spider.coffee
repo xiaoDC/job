@@ -1,16 +1,15 @@
-http = require 'http'
-url = 'http://www.lagou.com/jobs/positionAjax.json?'
+child_process = require 'child_process'
+BufferHelper = require 'bufferhelper'
 
-Spider_lagou =
+Spider =
     run:()->
-        # data = ''
-        # req = http.request url, (res)->
-        #     res.setEncoding 'utf-8'
-        #     res.on 'data', (chunk)->
-        #         data += chunk
-        #     res.on 'end', ()->
-
-        # req.end()
-        console.log 'test'
-
-exports.run =  Spider_lagou.run
+        bufferhelper = new BufferHelper()
+        child = child_process.spawn 'node', ['lagou.js'],
+            cwd: './app/service/spider'
+        child.stdout.on 'data', (data)->
+            bufferhelper.concat data
+        child.on 'close', (code)->
+            data = bufferhelper.toString()
+            json = JSON.parse data
+            console.log json
+exports.run =  Spider.run
