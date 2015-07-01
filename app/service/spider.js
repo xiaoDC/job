@@ -1,8 +1,10 @@
-var BufferHelper, Spider, child_process;
+var BufferHelper, Spider, cheerio, child_process;
 
 child_process = require('child_process');
 
 BufferHelper = require('bufferhelper');
+
+cheerio = require('cheerio');
 
 Spider = {
   run: function() {
@@ -15,10 +17,14 @@ Spider = {
       return bufferhelper.concat(data);
     });
     return child.on('close', function(code) {
-      var data, json;
-      data = bufferhelper.toString();
-      json = JSON.parse(data);
-      return console.log(json);
+      var $, el, els, i, j, ref, results;
+      $ = cheerio.load(bufferhelper.toString());
+      els = $('.mainNavs .menu_box .reset dd a');
+      results = [];
+      for (i = j = 0, ref = els.length; 0 <= ref ? j <= ref : j >= ref; i = 0 <= ref ? ++j : --j) {
+        results.push(el = cheerio(els[i]).text());
+      }
+      return results;
     });
   }
 };

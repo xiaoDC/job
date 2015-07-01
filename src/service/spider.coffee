@@ -1,5 +1,6 @@
 child_process = require 'child_process'
 BufferHelper = require 'bufferhelper'
+cheerio = require 'cheerio'
 
 Spider =
     run:()->
@@ -9,7 +10,9 @@ Spider =
         child.stdout.on 'data', (data)->
             bufferhelper.concat data
         child.on 'close', (code)->
-            data = bufferhelper.toString()
-            json = JSON.parse data
-            console.log json
+            $ = cheerio.load bufferhelper.toString()
+            els = $('.mainNavs .menu_box .reset dd a')
+            for i in [0..els.length]
+                el = cheerio(els[i]).text()
+
 exports.run =  Spider.run
